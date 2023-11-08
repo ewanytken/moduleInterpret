@@ -1,5 +1,4 @@
 import torch
-from torch import topk #return max element in dim (can return K-max elements)
 import numpy as np
 from torch import nn
 from data.Resizer import Resizer

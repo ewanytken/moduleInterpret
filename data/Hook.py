@@ -27,9 +27,9 @@ def actLayerMethod(model: torch.nn.Module, preprocessingList: list, \
     return features, predictionList
 
 # Method return max idx for prediction list. Len accordance to len of dataset
-def maxActivisionValue(predicitionList : list) -> list:
+def maxActivisionValue(predictionList : list) -> list:
     return [torch.squeeze(topk(pred, 1)[1].int()).numpy() \
-                                         for pred in predicitionList]
+                                         for pred in predictionList]
 
 # Need for FC layer, but can gain weight from other layers with squeeze 2 last dimension
 def weightFromLayer(model : torch.nn.Module, layer : str = 'fc') -> np.ndarray:

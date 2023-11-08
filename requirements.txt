@@ -4,6 +4,4 @@ matplotlib
 scipy
 pandas
 numpy
-math
-os
 Pillow
