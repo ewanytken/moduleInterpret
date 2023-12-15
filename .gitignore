@@ -1,7 +1,6 @@
 .idea/
 .ipynb_checkpoints/
 data/__pycache__/
-transformerDemo/
 image_test/
 dataset/
 model_parameters/
@@ -9,3 +8,6 @@ imagenet1000.txt
 label1000train.txt
 GuidedBGOnePcs.ipynb
 testGB.ipynb
+transformerMainResult.ipynb
+Yolo.ipynb
+transformerDemo/

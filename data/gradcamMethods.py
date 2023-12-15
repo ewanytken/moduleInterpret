@@ -23,6 +23,7 @@ def gradCamMethod(model: torch.nn.Module, indexNumpy: list, preprocessingList: l
     # insert in 2 last layers activision map 1 2048 7 7
     l_1x1000 = [twoLastLayers(l_2048x7x7[i])[0, indexNumpy[i]]
                                         for i in range(len(l_2048x7x7))]
+    # print(l_2048x7x7[0], '\n', l_1x1000[0], l_2048x7x7[0].is_leaf, l_1x1000[0].is_leaf)
 
 
     grads = [torch.autograd.grad(l_1x1000[i], l_2048x7x7[i])

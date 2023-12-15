@@ -1,14 +1,15 @@
 import torch
 from torch import topk #return max element in dim (can return K-max elements)
 import numpy as np
-import math
-import os
 
 # Hook facility recall every time after forward function will be call
 class Hook():
     features = []
-    def __init__(self, m):
-        self.hook = m.register_forward_hook(self.hookFunc)
+    def __init__(self, m, grad_true = False):
+        if grad_true is False:
+            self.hook = m.register_forward_hook(self.hookFunc)
+        else:
+            self.hook = m.register_backward_hook(self.hookFunc)
     def hookFunc(self, module, input, output):
         self.features.append(output.clone().detach())
     def remove(self):

@@ -3,9 +3,6 @@ import torch
 from PIL import Image
 from matplotlib.pyplot import imshow
 import matplotlib.pyplot as plt
-from torch.autograd import Variable
-from torch.nn import functional as F
-from torch import topk #return max element in dim (can return K-max elements)
 import numpy as np
 import skimage.transform
 import math

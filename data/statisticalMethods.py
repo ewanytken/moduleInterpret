@@ -61,7 +61,7 @@ def statisticalDataFromLayers(model: torch.nn.Module, preprocessingList: list,
         print(layer)
         if layersToResearch[i] == 'fc':
             # fc consist of len of pcs, len FNN
-            tensorSqueezeByMean = layersToResearch
+            tensorSqueezeByMean = featuresToTensor
         else: 
             # len of pcs, channel, w, h -> len_of_pcs, w*h; channel squeeze by mean function
             tensorSqueezeByMean = featuresToTensor.reshape(featuresToTensor.size(0), featuresToTensor.size(1), 
