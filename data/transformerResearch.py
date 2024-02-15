@@ -109,10 +109,13 @@ def attentionCamSimilar(model: nn.Module, attention: list, sample: torch.Tensor,
     # index to 1000
     for i in range(len(attention)):
         mulWeightAtt = torch.matmul(lastLayer[index], attention[i])
-        cam = mulWeightAtt - torch.min(mulWeightAtt)
-        cam = cam / torch.max(cam)
-        listOfAttention.insert(i, cam)
+        mulWeightAtt = (mulWeightAtt - mulWeightAtt.min()) / mulWeightAtt.max()
+        cardNumpy = np.sum(mulWeightAtt.reshape(3, 16, 16).detach().numpy(), axis=0)
+        cardNumpy = skimage.transform.resize(cardNumpy, [224, 224])
+        cardNumpy = (cardNumpy - np.min(cardNumpy)) / np.max(cardNumpy)
+
+        listOfAttention.insert(i, mulWeightAtt)
         fig.add_subplot(3, 4, i + 1)
-        plt.imshow(transforms.Compose([transforms.Resize((224, 224))])(rawImage), alpha=0.6)
-        plt.imshow(skimage.transform.resize(cam.reshape(3, 16, 16).permute(1,2,0).detach().numpy(), [224, 224]), alpha=0.8, cmap='jet')
+        plt.imshow(transforms.Compose([transforms.Resize((224, 224))])(rawImage), alpha=0.9)
+        plt.imshow(cardNumpy, alpha=0.4, cmap='jet')
     return listOfAttention
